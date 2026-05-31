@@ -37,3 +37,5 @@ build/
 .env.production
 **/client/.env
 **/server/.env
+client/.env
+server/.env
