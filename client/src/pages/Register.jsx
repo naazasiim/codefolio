@@ -30,7 +30,8 @@ export default function Register() {
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(data.message || "Something went wrong");
+        // 💡 UPDATED LINE: Added data.error to catch your backend payload
+        throw new Error(data.error || data.message || "Something went wrong");
       }
 
       // Save token dynamically on successful signup

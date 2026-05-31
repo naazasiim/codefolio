@@ -62,7 +62,7 @@ export default function MinimalistLayout({ data, preview = false }) {
           </div>
           <p className="text-sm text-stone-500 italic font-serif">{title || 'Software Engineer'}</p>
           
-          <div className="flex flex-wrap gap-4 text-xs text-stone-400">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-stone-400">
             {location && (
               <div className="flex items-center gap-1">
                 <MapPin className="h-3.5 w-3.5" /> {location}
@@ -78,7 +78,49 @@ export default function MinimalistLayout({ data, preview = false }) {
                 <FileText className="h-3.5 w-3.5" /> Resume
               </a>
             )}
+            
+            {/* Brought Connected Channels Up Here */}
+            {(socialLinks?.github || socialLinks?.linkedin || socialLinks?.twitter) && (
+              <div className="flex gap-4 border-l border-stone-200 pl-6 hidden md:flex">
+                {socialLinks?.github && (
+                  <a href={socialLinks.github} target="_blank" rel="noreferrer" className="hover:text-stone-700 transition-colors font-medium">
+                    Github
+                  </a>
+                )}
+                {socialLinks?.linkedin && (
+                  <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" className="hover:text-stone-700 transition-colors font-medium">
+                    LinkedIn
+                  </a>
+                )}
+                {socialLinks?.twitter && (
+                  <a href={socialLinks.twitter} target="_blank" rel="noreferrer" className="hover:text-stone-700 transition-colors font-medium">
+                    Twitter
+                  </a>
+                )}
+              </div>
+            )}
           </div>
+
+          {/* Mobile Fallback for Social Links */}
+          {(socialLinks?.github || socialLinks?.linkedin || socialLinks?.twitter) && (
+            <div className="flex gap-4 text-xs text-stone-400 md:hidden pt-1">
+              {socialLinks?.github && (
+                <a href={socialLinks.github} target="_blank" rel="noreferrer" className="hover:text-stone-700 transition-colors font-medium">
+                  Github
+                </a>
+              )}
+              {socialLinks?.linkedin && (
+                <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" className="hover:text-stone-700 transition-colors font-medium">
+                  LinkedIn
+                </a>
+              )}
+              {socialLinks?.twitter && (
+                <a href={socialLinks.twitter} target="_blank" rel="noreferrer" className="hover:text-stone-700 transition-colors font-medium">
+                  Twitter
+                </a>
+              )}
+            </div>
+          )}
         </header>
 
         {/* Bio */}
@@ -222,28 +264,6 @@ export default function MinimalistLayout({ data, preview = false }) {
             </button>
           </form>
         </section>
-
-        {/* Social connections */}
-        <footer className="pt-8 border-t border-stone-250/60 flex justify-between items-center text-xs text-stone-400">
-          <span>Connected channels</span>
-          <div className="flex gap-4">
-            {socialLinks?.github && (
-              <a href={socialLinks.github} target="_blank" rel="noreferrer" className="hover:text-stone-700 transition-colors">
-                Github
-              </a>
-            )}
-            {socialLinks?.linkedin && (
-              <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" className="hover:text-stone-700 transition-colors">
-                LinkedIn
-              </a>
-            )}
-            {socialLinks?.twitter && (
-              <a href={socialLinks.twitter} target="_blank" rel="noreferrer" className="hover:text-stone-700 transition-colors">
-                Twitter
-              </a>
-            )}
-          </div>
-        </footer>
 
       </div>
     </div>

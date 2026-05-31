@@ -262,9 +262,13 @@ export default function Dashboard() {
     } catch (err) { setErrorMsg(err.message); }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+  const handleLogout = (e) => {
+    if (e) e.preventDefault(); // Stop any ghost bubble click actions
+    
+    localStorage.removeItem('token'); // Kill the auth session
+    
+    // 💡 FORCE AN ABSOLUTE ROUTE REDIRECT
+    window.location.href = '/'; 
   };
 
   if (loading) {
@@ -329,11 +333,11 @@ export default function Dashboard() {
             </a>
 
             <button
-              onClick={handleLogout}
-              className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 transition-all font-semibold"
+              onClick={handleLogout} 
+              className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-all cursor-pointer"
             >
               <LogOut className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Sign Out</span>
+              <span className="hidden sm:inline">Log Out</span>
             </button>
           </div>
         </div>
