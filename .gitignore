@@ -28,3 +28,12 @@ dist-ssr
 dist/
 build/
 .vscode/
+
+# Environment files (Dono client aur server ke liye)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+**/client/.env
+**/server/.env
